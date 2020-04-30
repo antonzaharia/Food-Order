@@ -24,13 +24,15 @@ class OrdersController < ApplicationController
     @order_items = OrderItem.all.select {|order_items| order_items.order_id == @order.id}
     
 
-    erb :'orders/show'
+    erb :'orders/order_confirmed'
   end
 
 
-  # GET: /orders/5
+  # GET: /orders/5 
   get "/orders/:id" do
-    erb :"/orders/show.html"
+    @order = Order.find_by_id(params[:id])
+    @order_items = OrderItem.all.select {|order_items| order_items.order_id == @order.id}
+    erb :"/orders/show"
   end
 
   # GET: /orders/5/edit

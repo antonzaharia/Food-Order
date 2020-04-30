@@ -1,0 +1,13 @@
+<% if logged_in? %>
+
+<% @order_items.each do |item| %>
+<%= item.item.name %>
+<% end %>
+<%=@order.total%>
+<a href="/order/<%= @order.id %>">See Order</a>
+
+
+
+<% else %>
+<%= redirect to "/failure" %>
+<% end %>
