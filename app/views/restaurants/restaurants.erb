@@ -3,8 +3,9 @@
 <p><a href="/logout">Log Out</a> <a href="/orders">Orders History</a></p>
 
 <% @restaurants.each do |restaurant|%>
-<h2><a href="/restaurants/<%= restaurant.id %>"><%= restaurant.name %></a></h2>
-<p><%= restaurant.genre %>
+<h2><a href="/restaurants/<%= restaurant.id %>"><%= restaurant.name %></a>
+ ------ <%= restaurant.genre.capitalize %></h2>
+
 <% end %>
 
 <% else %>

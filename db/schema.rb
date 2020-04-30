@@ -11,34 +11,36 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200429182350) do
+ActiveRecord::Schema.define(version: 20200428160048) do
 
   create_table "items", force: :cascade do |t|
     t.string  "name"
     t.string  "description"
     t.string  "genre"
-    t.integer "restaurant_id"
     t.string  "price"
+    t.integer "restaurant_id"
   end
 
   create_table "order_items", force: :cascade do |t|
     t.integer "order_id"
     t.integer "item_id"
+    t.integer "quantity"
   end
 
   create_table "orders", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "restaurant_id"
     t.string   "items"
+    t.string   "total"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "total"
   end
 
   create_table "restaurants", force: :cascade do |t|
     t.string "name"
     t.string "genre"
-    t.string "items"
+    t.string "email"
+    t.string "password_digest"
   end
 
   create_table "users", force: :cascade do |t|

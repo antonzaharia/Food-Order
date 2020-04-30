@@ -1,8 +1,9 @@
 class CreateOrderItems < ActiveRecord::Migration
   def change
-    create_table :order_items do |s|
-      s.integer :order_id
-      s.integer :item_id
+    create_table :order_items do |t|
+      t.integer :order_id
+      t.integer :item_id
+      t.integer :quantity
     end
   end
 end

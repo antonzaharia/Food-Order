@@ -3,8 +3,9 @@
 <a href="/restaurants">Back to Restaurants</a><br><br><br><br>
 
 <% @orders.reverse.each do |order|  %>
-
+<a href="/orders/<%= order.id %>">
 <h3>You ordered from: <%= order.restaurant.name %></h3>
+</a>
 <p>On: <%= order.created_at %>
 
 <% if Time.now < order.created_at + (1*60*60)%>

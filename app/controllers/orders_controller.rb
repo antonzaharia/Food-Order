@@ -37,7 +37,7 @@ class OrdersController < ApplicationController
 
   # GET: /orders/5/edit
   get "/orders/:id/edit" do
-    erb :"/orders/edit.html"
+    erb :"/orders/edit"
   end
 
   # PATCH: /orders/5

@@ -1,5 +1,7 @@
 <% if logged_in? %>
 
+<a href="/restaurants">Back to Restaurants</a>
+
 <h1><%= @restaurant.name %></h1>
 <form method="POST" action="/orders">
 <% @items.each do |item| %>
