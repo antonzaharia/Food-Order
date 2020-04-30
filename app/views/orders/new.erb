@@ -1,3 +1,6 @@
+<% if logged_in? %>
+
+
 <h1>Confirm Your Order.</h1>
 <form method="POST" action="/order-confirmed">
 <% @total = 0.00 %>
@@ -29,3 +32,7 @@
 <textarea id="more_info" name="more_info"></textarea>
 <input type="submit" value="Place Order">
 </form>
+
+<% else %>
+<%= redirect to "/failure" %>
+<% end %>

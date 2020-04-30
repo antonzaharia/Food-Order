@@ -44,10 +44,21 @@ class UsersController < ApplicationController
        end
     end
       
-    end
-
-
-
-
   end
+
+  get '/orders' do
+    @user = current_user
+    @orders = Order.all.select {|order| order.user == @user}
+    erb :'/users/orders'
+  end
+
+  get '/logout' do
+    session.clear
+    redirect '/' 
+  end
+
+
+
+
+end
 
