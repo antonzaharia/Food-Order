@@ -1,0 +1,15 @@
+<h1><%= @restaurant.name %></h1>
+<form method="POST" action="/orders">
+<% @items.each do |item| %>
+
+<h3><input type="checkbox" id="<%= item.name %>" name="<%= item.name %>">
+<input type="number" value="1" name="<%= item.name %>_count" >
+<label for="<%= item.name %>"><%= item.name %></label></h3>
+
+<p><%= item.genre %></p>
+<h4><%= item.description %> - <%= item.price %></h4>
+
+<% end %>
+
+<input type="submit" value="Place Order">
+</form>

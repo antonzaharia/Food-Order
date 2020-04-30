@@ -1,0 +1,4 @@
+<% @restaurants.each do |restaurant|%>
+<h2><a href="/restaurants/<%= restaurant.id %>"><%= restaurant.name %></a></h2>
+<p><%= restaurant.genre %>
+<% end %>

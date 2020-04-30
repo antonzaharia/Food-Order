@@ -1,0 +1,31 @@
+<h1>Confirm Your Order.</h1>
+<form method="POST" action="/order-confirmed">
+<% @total = 0.00 %>
+
+
+<% @order_items.each do |oi| %>
+<% item = Item.find_by_name(oi) %>
+<% @price = item.price.split("$")[1].to_f%>
+
+
+<h3><%= item.name %>
+<% params.select do |key, value| %>
+  <% if key == "#{item.name}_count" %>
+    <% @quantity = value.to_f%>
+    <%= "X #{value}" %> - <%= item.price %></h3>
+  <% end %>
+<% end %>
+<input type="hidden" name="<%= item.name %>" value="<%= item %>">
+<input type="hidden" name="restaurant_id" value="<%= item.restaurant.id %>">
+
+<input type="hidden" name="<%= item.id %>" value="item_id">
+
+<% @total += @price*@quantity%>
+<% end %>
+<br>
+<h2>Total: $<%= @total %></h2>
+<input type="hidden" name="total" value="<%= @total %>">
+<label for="more_info">Any specific suggestion?</label>
+<textarea id="more_info" name="more_info"></textarea>
+<input type="submit" value="Place Order">
+</form>
