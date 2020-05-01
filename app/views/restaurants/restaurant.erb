@@ -1,0 +1,25 @@
+<% if restaurant_logged_in? %>
+
+<h1><%= @restaurant.name%></h1>
+<a href="/restaurants/<%= @restaurant.id %>/edit">Edit restaurant details</a>
+<br><br>
+<a href="/items/new">Add Item</a>
+
+<dl>
+<% @items.each do |item| %>
+
+  <dt><%= item.name%></dt>
+  <dd>- <%= item.description%></dd>
+  <dd>- <%= item.genre%></dd>
+  <dd>- <%= item.price%></dd>
+  <dd>- <a href="/item/<%= item.id%>/edit">Edit this item</a></dd>
+  <dd><form method="POST" action="/item/<%= item.id %>">
+  <input id="hidden" type="hidden" name="_method" value="delete">
+  <input type="submit" value="Delete this item">
+</form></dd>
+</dl>
+<% end %>
+
+<% else %>
+<%= redirect to "/failure" %>
+<% end %>

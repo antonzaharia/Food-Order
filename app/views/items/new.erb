@@ -1,0 +1,16 @@
+<% if restaurant_logged_in? %>
+
+<h1>New Item</h1>
+
+<form action="/item" method="POST">
+<input type="text" name="item[name]" placeholder="Enter item name">
+<input type="text" name="item[description]" placeholder="Enter item description">
+<input type="text" name="item[genre]" placeholder="Enter item genre">
+<input type="text" name="item[price]" placeholder="Enter item price">
+<input type="submit" value="Create Item">
+</form>
+
+
+<% else %>
+<%= redirect to "/failure" %>
+<% end %>

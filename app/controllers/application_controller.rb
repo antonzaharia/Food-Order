@@ -26,6 +26,10 @@ class ApplicationController < Sinatra::Base
       User.find(session[:user_id])
     end
 
+    def restaurant_logged_in?
+      !!session[:restaurant_id]
+    end
+
 
   end
 

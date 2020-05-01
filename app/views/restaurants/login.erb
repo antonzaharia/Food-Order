@@ -1,0 +1,11 @@
+<h1>Login as a Restaurant</h1>
+<br><br>
+
+<form action="/restaurant/login" method="POST">
+
+<p style="color: red;"><%= @error if @error %></p>
+
+<input type="email" name="restaurant[email]" placeholder="Restaurant Email">
+<input type="password" name="restaurant[password]" placeholder="Enter your password">
+<input type="submit" value="Login Restaurant">
+</form>
