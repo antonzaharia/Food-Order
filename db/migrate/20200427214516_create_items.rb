@@ -8,6 +8,6 @@ class CreateItems < ActiveRecord::Migration
       t.integer :restaurant_id
     end
   end
-end
+end 
 
 

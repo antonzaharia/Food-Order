@@ -12,7 +12,10 @@
 
 <span style="color: red;"> ( Preparing... ) </span>
 
-<a href="/orders/:id/edit"> Edit your order </a>
+<form method="POST" action="/orders/<%= order.id %>/delete">
+  <input id="hidden" type="hidden" name="_method" value="delete">
+  <input type="submit" value="Cancel Order">
+</form>
 <% end %></p>
 
 <br>

@@ -19,16 +19,28 @@ class ItemsController < ApplicationController
 
   # GET: /items/5/edit
   get "/items/:id/edit" do
+    @item = Item.find_by_id(params[:id])
+
     erb :"/items/edit"
   end
 
   # PATCH: /items/5
   patch "/item/:id" do
+    @item = Item.find_by_id(params[:id])
+    @item.name = params[:name]
+    @item.description = params[:description]
+    @item.genre = params[:genre]
+    @item.price = params[:price]
+
+    @item.save
     redirect "/restaurant"
   end
 
   # DELETE: /items/5/delete
   delete "/items/:id/delete" do
+    @item = Item.find_by_id(params[:id])
+    @item.destroy
+    
     redirect "/restaurant"
   end
 end

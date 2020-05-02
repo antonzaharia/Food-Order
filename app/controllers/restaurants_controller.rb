@@ -60,8 +60,14 @@ class RestaurantsController < ApplicationController
 
   get '/restaurant' do
     @restaurant = Restaurant.find_by_id(session[:restaurant_id])
-    @items = Item.all.select { |item| item.restaurant = @restaurant }
+    @items = Item.all.select { |item| item.restaurant == @restaurant }
     erb :'/restaurants/restaurant'
+  end
+
+  get '/restaurant/logout' do
+    session.clear
+
+    redirect '/'
   end
 
 end

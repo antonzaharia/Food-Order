@@ -23,10 +23,8 @@ class OrdersController < ApplicationController
     end
     @order_items = OrderItem.all.select {|order_items| order_items.order_id == @order.id}
     
-
     erb :'orders/order_confirmed'
   end
-
 
   # GET: /orders/5 
   get "/orders/:id" do
@@ -35,18 +33,11 @@ class OrdersController < ApplicationController
     erb :"/orders/show"
   end
 
-  # GET: /orders/5/edit
-  get "/orders/:id/edit" do
-    erb :"/orders/edit"
-  end
-
-  # PATCH: /orders/5
-  patch "/orders/:id" do
-    redirect "/orders/:id"
-  end
-
   # DELETE: /orders/5/delete
   delete "/orders/:id/delete" do
+    @order = Order.find_by_id(params[:id])
+    @order.destroy
+    
     redirect "/orders"
   end
 end

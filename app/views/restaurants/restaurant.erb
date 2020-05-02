@@ -1,8 +1,8 @@
 <% if restaurant_logged_in? %>
 
-<h1><%= @restaurant.name%></h1>
-<a href="/restaurants/<%= @restaurant.id %>/edit">Edit restaurant details</a>
-<br><br>
+<h1><%= @restaurant.name%></h1> <a href="/restaurant/logout">Logout</a>
+<br><br><br><br>
+
 <a href="/items/new">Add Item</a>
 
 <dl>
@@ -12,8 +12,8 @@
   <dd>- <%= item.description%></dd>
   <dd>- <%= item.genre%></dd>
   <dd>- <%= item.price%></dd>
-  <dd>- <a href="/item/<%= item.id%>/edit">Edit this item</a></dd>
-  <dd><form method="POST" action="/item/<%= item.id %>">
+  <dd>- <a href="/items/<%= item.id %>/edit">Edit this item</a></dd>
+  <dd><form method="POST" action="/items/<%= item.id %>/delete">
   <input id="hidden" type="hidden" name="_method" value="delete">
   <input type="submit" value="Delete this item">
 </form></dd>

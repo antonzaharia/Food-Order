@@ -1,1 +1,20 @@
-<h1>Edit item <%= %></h1>
+<% if restaurant_logged_in? %>
+
+<h1>Edit Item</h1>
+
+<p style="color: red;"><%= @error if @restaurant && @error %></p>
+
+<form action="/item/<%= @item.id %>" method="POST">
+<input id="hidden" type="hidden" name="_method" value="PATCH">
+
+<input type="text" name="name" value="<%= @item.name %>">
+<input type="text" name="description" value="<%= @item.description %>">
+<input type="text" name="genre" value="<%= @item.genre %>">
+<input type="text" name="price" value="<%= @item.price %>">
+<input type="submit" value="Edit Item">
+</form>
+
+
+<% else %>
+<%= redirect to "/failure" %>
+<% end %>

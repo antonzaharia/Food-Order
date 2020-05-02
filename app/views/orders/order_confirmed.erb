@@ -1,10 +1,13 @@
 <% if logged_in? %>
 
+
+<h1>Thanks for your order!</h1>
+<h2>You have 60 minutes if you want to edit or cancel your order</h2>
 <% @order_items.each do |item| %>
 <%= item.item.name %>
 <% end %>
 <%=@order.total%>
-<a href="/order/<%= @order.id %>">See Order</a>
+<a href="/orders/<%= @order.id %>">See Order</a>
 
 
 
