@@ -1,8 +1,9 @@
-<% if logged_in? %>
+<% if logged_in? || current_user.id == session[:user_id] %>
 
 
 <h1>Thanks for your order!</h1>
-<h2>You have 60 minutes if you want to edit or cancel your order</h2>
+<h2>You have 60 minutes if you want to cancel your order.</h2>
+
 <% @order_items.each do |item| %>
 <%= item.item.name %>
 <% end %>

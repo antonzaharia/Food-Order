@@ -30,6 +30,10 @@ class ApplicationController < Sinatra::Base
       !!session[:restaurant_id]
     end
 
+    def current_restaurant
+      Restaurant.find(session[:restaurant_id])
+    end
+
 
   end
 

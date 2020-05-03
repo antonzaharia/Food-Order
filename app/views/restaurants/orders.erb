@@ -1,0 +1,5 @@
+<% @orders.each do |order| %>
+<h3><%= order.user.name %></h3>
+<p><%= order.created_at %></p>
+<p>Total: $ <%= order.total.to_f.round(2) %></p>
+<% end %>

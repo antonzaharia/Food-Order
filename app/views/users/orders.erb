@@ -1,4 +1,4 @@
-<% if logged_in? %>
+<% if logged_in? || current_user.id == session[:user_id] %>
 
 <a href="/restaurants">Back to Restaurants</a><br><br><br><br>
 

@@ -8,7 +8,7 @@ class RestaurantsController < ApplicationController
 
   get '/restaurants/:id' do
     @restaurant = Restaurant.find_by_id(params[:id])
-    @items = Item.all.select { |item| item.restaurant = @restaurant }
+    @items = Item.all.select { |item| item.restaurant == @restaurant}
     erb :'restaurants/show'
   end
 
@@ -68,6 +68,12 @@ class RestaurantsController < ApplicationController
     session.clear
 
     redirect '/'
+  end
+
+  get '/restaurant/orders' do 
+    @orders = Order.all.select {|order| order.restaurant_id == session[:restaurant_id]}
+
+    erb :'/restaurants/orders'
   end
 
 end

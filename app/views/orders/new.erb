@@ -1,8 +1,8 @@
-<% if logged_in? %>
+<% if logged_in? || current_user.id == session[:user_id] %>
 
 
 <h1>Confirm Your Order.</h1> 
-<form method="POST" action="/order-confirmed">
+<form method="POST" action="/orders/show">
 <% @total = 0.00 %>
 
 
@@ -18,15 +18,18 @@
     <%= "X #{value}" %> - <%= item.price %></h3>
   <% end %>
 <% end %>
+
+
 <input type="hidden" name="<%= item.name %>" value="<%= item %>">
 <input type="hidden" name="restaurant_id" value="<%= item.restaurant.id %>">
 
-<input type="hidden" name="<%= item.id %>" value="item_id">
+<input type="hidden" name="<%= item.id %>-<%= @quantity.to_s %>" value="item_id_quantity">
 
 <% @total += @price*@quantity%>
+
 <% end %>
 <br>
-<h2>Total: $<%= @total %></h2>
+<h2>Total: $<%= @total.round(2) %></h2>
 <input type="hidden" name="total" value="<%= @total %>">
 <label for="more_info">Any specific suggestion?</label>
 <textarea id="more_info" name="more_info"></textarea>

@@ -1,6 +1,7 @@
-<% if restaurant_logged_in? %>
+<% if restaurant_logged_in? || current_restaurant.id == session[:restaurant_id] %>
 
 <h1><%= @restaurant.name%></h1> <a href="/restaurant/logout">Logout</a>
+<p><a href="/restaurant/orders">Orders</a></p>
 <br><br><br><br>
 
 <a href="/items/new">Add Item</a>

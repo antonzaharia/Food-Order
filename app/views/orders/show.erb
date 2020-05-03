@@ -1,14 +1,15 @@
-<% if logged_in? %>
+<% if logged_in? || current_user.id == session[:user_id] %>
 
 <h1><%= @order.restaurant.name %></h1>
 
 <% @order_items.each do |order_i| %>
-<p><%= order_i.item.name %> - <%= order_i.item.price %></p>
+<p><%= order_i.quantity %> x <%= order_i.item.name %> - <%= order_i.item.price %></p>
 <% end %>
-<p><%=@order.total%></p>
+<p>$ <%=@order.total.to_f.round(2)%></p>
 
 
 
 <% else %>
 <%= redirect to "/failure" %>
-<% end %>
+<% end %> 
+

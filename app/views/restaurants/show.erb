@@ -3,7 +3,11 @@
 <a href="/restaurants">Back to Restaurants</a>
 
 <h1><%= @restaurant.name %></h1>
+
+
 <form method="POST" action="/orders">
+
+
 <% @items.each do |item| %>
 
 <h3><input type="checkbox" id="<%= item.name %>" name="<%= item.name %>">
