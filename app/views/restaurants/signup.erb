@@ -1,12 +1,33 @@
+<div class="d-flex justify-content-center">
 <h1>Signup as a Restaurant</h1>
+</div>
 <br><br>
-
+<div class="d-flex justify-content-center">
 <p style="color: red;"><%= @error if @restaurant && @error %></p>
+</div>
 
+<div class="container">
 <form action="/restaurant/signup" method="POST">
-<input type="text" name="restaurant[name]" placeholder="Restaurant Name">
-<input type="text" name="restaurant[genre]" placeholder="Restaurant Genre">
-<input type="email" name="restaurant[email]" placeholder="Restaurant Email">
-<input type="password" name="restaurant[password]" placeholder="Choose a password">
-<input type="submit" value="Signup Restaurant">
+<div class="form-group">
+<input class="form-control" type="text" name="restaurant[name]" placeholder="Restaurant Name">
+</div>
+
+<div class="form-group">
+<input class="form-control" type="text" name="restaurant[genre]" placeholder="Restaurant Genre">
+</div>
+
+<div class="form-group">
+<input class="form-control" type="email" name="restaurant[email]" placeholder="Restaurant Email">
+</div>
+
+<div class="form-group">
+<input class="form-control" type="password" name="restaurant[password]" placeholder="Choose a password">
+</div>
+
+<input class="btn btn-primary btn-lg btn-block" type="submit" value="Signup Restaurant">
 </form>
+</div>
+<br><br>
+<div class="d-flex justify-content-center">
+<p>Already have an account? <a href="/restaurant/login">Login Here</a></p>
+</div>

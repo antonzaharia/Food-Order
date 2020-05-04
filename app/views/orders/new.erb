@@ -1,7 +1,12 @@
-<% if logged_in? || current_user.id == session[:user_id] %>
+<div class="container">
 
+<% if logged_in? || current_user %>
 
-<h1>Confirm Your Order.</h1> 
+<div class="card">
+  <div class="card-header">
+    Confirm Your Order.
+  </div>
+<div class="card-body">
 <form method="POST" action="/orders/show">
 <% @total = 0.00 %>
 
@@ -11,11 +16,11 @@
 <% @price = item.price.split("$")[1].to_f%>
 
 
-<h3><%= item.name %>
+<h5 class="card-title"><%= item.name %>
 <% params.select do |key, value| %>
   <% if key == "#{item.name}_count" %>
     <% @quantity = value.to_f%>
-    <%= "X #{value}" %> - <%= item.price %></h3>
+    <%= "X #{value}" %> - <%= item.price %></h5>
   <% end %>
 <% end %>
 
@@ -29,13 +34,18 @@
 
 <% end %>
 <br>
-<h2>Total: $<%= @total.round(2) %></h2>
+<h4 class="card-text">Total: $<%= @total.round(2) %></h4>
 <input type="hidden" name="total" value="<%= @total %>">
-<label for="more_info">Any specific suggestion?</label>
-<textarea id="more_info" name="more_info"></textarea>
-<input type="submit" value="Place Order">
+<label for="more_info">Any specific suggestion?</label><br>
+<textarea id="more_info" name="more_info"></textarea><br>
+<input class="btn btn-primary btn-lg" type="submit" value="Place Order">
 </form>
+
+  </div>
+</div>
 
 <% else %>
 <%= redirect to "/failure" %>
 <% end %>
+
+</div>

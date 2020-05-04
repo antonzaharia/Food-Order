@@ -1,5 +1,33 @@
-<% @orders.each do |order| %>
-<h3><%= order.user.name %></h3>
-<p><%= order.created_at %></p>
-<p>Total: $ <%= order.total.to_f.round(2) %></p>
+<% if restaurant_logged_in? || current_restaurant%>
+
+<div class="container"> 
+
+<div class="d-flex justify-content-center">
+<p><a class="btn btn-light" href="/restaurant">Back to Restaurant</a></p>
+</div>
+
+<% @orders.reverse.each do |order| %>
+
+<div class="card">
+  <div class="card-header">
+   <%= order.created_at %>
+  </div>
+  <div class="card-body">
+    <blockquote class="blockquote mb-0">
+      <p><%= order.user.name %> - <% if Time.now < order.created_at + (1*60*60)%>
+                                        <span class="badge badge-danger"><%="New"%></span>
+                                    <% else %>
+                                        <span class="badge badge-success"><%="Completed"%></span>
+                                   <% end %></p>
+      <footer class="blockquote-footer">Total: $ <%= order.total.to_f.round(2) %></footer>
+    </blockquote>
+  </div>
+</div>
 <% end %>
+
+</div>
+
+<% else %>
+<%= redirect to "/failure" %>
+<% end %>
+

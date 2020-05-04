@@ -7,12 +7,18 @@ class ItemsController < ApplicationController
 
   # POST: /items
   post "/item" do
-    @item = Item.new(params[:item])
-    @item.restaurant_id = session[:restaurant_id]
-    if @item.save
-      redirect "/restaurant"
+    if params[:item][:name] == "" || params[:item][:description] == "" || params[:item][:genre] == "" || params[:item][:price] == ""
+      @error = "All fields must be completed" 
+
+      erb :'/items/new'
     else
-      redirect "/failure"
+      @item = Item.new(params[:item])
+      @item.restaurant_id = session[:restaurant_id]
+      if @item.save
+        redirect "/restaurant"
+      else
+        redirect "/failure"
+      end
     end
 
   end

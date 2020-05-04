@@ -1,7 +1,12 @@
+
+<div class="container">
+
 <% if logged_in?%>
 
-<a href="/restaurants">Back to Restaurants</a>
-
+<div class="d-flex justify-content-center">
+<a class="btn btn-outline-secondary" href="/restaurants">Back to Restaurants</a>
+</div>
+<br><br>
 <h1><%= @restaurant.name %></h1>
 
 
@@ -10,18 +15,31 @@
 
 <% @items.each do |item| %>
 
-<h3><input type="checkbox" id="<%= item.name %>" name="<%= item.name %>">
-<input type="number" value="1" name="<%= item.name %>_count" >
-<label for="<%= item.name %>"><%= item.name %></label></h3>
 
-<p><%= item.genre %></p>
-<h4><%= item.description %> - <%= item.price %></h4>
+<div class="card">
+  <div class="card-body">
 
+    <div class="form-check">
+    <h5>
+<input style="width: 20px; height: 20px;"class="form-check-input" type="checkbox" id="<%= item.name %>" name="<%= item.name %>">
+
+<input style="width: 40px;" type="number" value="1" name="<%= item.name %>_count" >
+
+<label for="<%= item.name %>"><%= item.name %></label><span class="badge badge-secondary" ><%= item.price %></span>
+
+<p class="d-flex justify-content-end"><%= item.genre %></p>
+<%= item.description %> - 
+
+    </div>
+  </div>
+</div>
 <% end %>
 
-<input type="submit" value="Place Order">
+<input class="btn btn-primary btn-lg btn-block" type="submit" value="Place Order">
 </form>
-
+<br><br><br><br>
 <% else %>
 <%= redirect to "/failure" %>
 <% end %>
+
+</div>

@@ -1,20 +1,23 @@
 <% if restaurant_logged_in? %>
 
-<h1>Edit Item</h1>
+<div class="container"> 
 
-<p style="color: red;"><%= @error if @restaurant && @error %></p>
+<h1 class="d-flex justify-content-center">Edit Item</h1>
 
 <form action="/item/<%= @item.id %>" method="POST">
 <input id="hidden" type="hidden" name="_method" value="PATCH">
 
-<input type="text" name="name" value="<%= @item.name %>">
-<input type="text" name="description" value="<%= @item.description %>">
-<input type="text" name="genre" value="<%= @item.genre %>">
-<input type="text" name="price" value="<%= @item.price %>">
-<input type="submit" value="Edit Item">
+<input class="form-control" type="text" name="name" value="<%= @item.name %>"><br>
+<input class="form-control" type="text" name="description" value="<%= @item.description %>"><br>
+<input class="form-control" type="text" name="genre" value="<%= @item.genre %>"><br>
+<input class="form-control" type="text" name="price" value="<%= @item.price %>"><br>
+<input class="btn btn-primary" type="submit" value="Edit Item">
+<a class="btn btn-danger" href="/restaurant">Cancel</a>
 </form>
 
+</div>
 
 <% else %>
 <%= redirect to "/failure" %>
 <% end %>
+

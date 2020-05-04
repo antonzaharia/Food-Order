@@ -1,15 +1,39 @@
+
+<div class="container">
 <% if logged_in? %>
 
-<p><a href="/logout">Log Out</a> <a href="/orders">Orders History</a></p>
 
+<div class="d-flex justify-content-end">
+<% @user = User.find_by_id(session[:user_id])%>
+<p><%= @user.name %> <a class="btn btn-outline-danger" href="/logout">Log Out</a>
+</div>
+
+<div class="d-flex justify-content-center">
+<a class="btn btn-outline-info" href="/orders">Orders History</a></p>
+</div>
+
+<div class="d-flex justify-content-center">
 <h3>Start a new Order from:</h3>
+</div>
 <br>
 <% @restaurants.each do |restaurant|%>
-<h2><a href="/restaurants/<%= restaurant.id %>"><%= restaurant.name %></a>
- ------ <%= restaurant.genre.capitalize %></h2>
+
+<div class="card">
+  <div class="card-header">
+    <%= restaurant.genre.capitalize %>
+  </div>
+  <div class="card-body">
+    <h5 class="card-title"><%= restaurant.name %></h5>
+    <% restaurant.items.first(1).each do |item| %>
+    <p class="card-text">Dishes like: <%=  item.name %></p>
+    <% end %>
+    <a href="/restaurants/<%= restaurant.id %>" class="btn btn-primary">Start Order</a>
+  </div>
+</div>
 
 <% end %>
 
 <% else %>
 <%= redirect to "/failure" %>
 <% end %>
+</div>

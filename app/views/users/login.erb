@@ -1,17 +1,23 @@
+<div class="d-flex justify-content-center">
 <h1>Login</h1>
-
+</div>
+<div class="d-flex justify-content-center">
 <p style="color: red;"><%= @error if @error %></p>
+</div>
 
+<div class="container">
 <form method="POST" action="/login">
-
-<input type="email" id="email" name="email" placeholder="Your Email">
-
-<input type="password" id="password" name="password"  placeholder="Your Password">
-
-<input type="submit" value="Login">
-
-
+<div class="form-group">
+<input class="form-control" type="email" id="email" name="email" placeholder="Your Email">
+<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+</div>
+<div class="form-group">
+<input class="form-control" type="password" id="password" name="password"  placeholder="Your Password">
+</div>
+<input class="btn btn-primary btn-lg btn-block" type="submit" value="Login">
 </form>
-
+</div>
 <br><br>
+<div class="d-flex justify-content-center">
 <p>Do not have an account? <a href="/signup"> Signup Here</a></p>
+</div>

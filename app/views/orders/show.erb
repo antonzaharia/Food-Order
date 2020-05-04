@@ -1,15 +1,35 @@
-<% if logged_in? || current_user.id == session[:user_id] %>
+<div class="container"> 
+<% if logged_in? || current_user%>
 
-<h1><%= @order.restaurant.name %></h1>
+<div class="d-flex justify-content-center">
+<a class="btn btn-light" href="/restaurants">Back to Restaurants</a><br>
+</div>
+
+<div class="d-flex justify-content-end">
+<% @user = User.find_by_id(session[:user_id])%>
+<p><%= @user.name %> <a class="btn btn-outline-danger" href="/logout">Log Out</a>
+</div>
+
+<br>
+<div class="d-flex justify-content-center">
+<h1><%= @order.restaurant.name %> order.</h1>
+</div>
+
+<br><br>
+<ul class="list-group">
 
 <% @order_items.each do |order_i| %>
-<p><%= order_i.quantity %> x <%= order_i.item.name %> - <%= order_i.item.price %></p>
+
+  <li class="list-group-item d-flex justify-content-between align-items-center">
+    <%= order_i.item.name %> - <%= order_i.item.price %>
+    <span class="badge badge-primary badge-pill">x <%= order_i.quantity %></span>
+  </li>
 <% end %>
-<p>$ <%=@order.total.to_f.round(2)%></p>
-
-
-
+</ul>
+<div class="d-flex justify-content-center fixed-bottom">
+<h2>Total: <span class="badge badge-secondary">$ <%=@order.total.to_f.round(2)%></span></h2>
+</div>
 <% else %>
 <%= redirect to "/failure" %>
 <% end %> 
-
+</div>

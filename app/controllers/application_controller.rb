@@ -23,7 +23,7 @@ class ApplicationController < Sinatra::Base
     end
 
     def current_user
-      User.find(session[:user_id])
+      User.find_by_id(session[:user_id])
     end
 
     def restaurant_logged_in?
@@ -31,7 +31,7 @@ class ApplicationController < Sinatra::Base
     end
 
     def current_restaurant
-      Restaurant.find(session[:restaurant_id])
+      Restaurant.find_by_id(session[:restaurant_id])
     end
 
 
