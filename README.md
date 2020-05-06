@@ -19,19 +19,19 @@ Clone this repository
 
 ## How to run the program
 
-In your terminal, run 'bundle install' to install all required gems.
-In your terminal, type 'shotgun' to start the server.
-In your browser, visit: http://127.0.0.1:9393/ to visit the homepage.
+#### In your terminal, run 'bundle install' to install all required gems.
+#### In your terminal, type 'shotgun' to start the server.
+#### In your browser, visit: http://127.0.0.1:9393/ to visit the homepage.
 
 ## Files information
 
-'/db/migrate' has all the migrations files
-'/config' has the setup environment
-'/app' has the actual code files where all the work is done.
-'/app/controllers' has the sinatra controllers files
-'/app/models' has the ruby models
-'/app/views' has the .erb files to be rendered
-Gemfile has all the required gems to run this project
+#### '/db/migrate' has all the migrations files
+#### '/config' has the setup environment
+#### '/app' has the actual code files where all the work is done.
+#### '/app/controllers' has the sinatra controllers files
+#### '/app/models' has the ruby models
+#### '/app/views' has the .erb files to be rendered
+#### Gemfile has all the required gems to run this project
 
 ## Usage
 
