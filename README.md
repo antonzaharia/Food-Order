@@ -16,10 +16,11 @@ A User Interface: login, signup, orders history, create new order, cancel order 
 ## Installation
 
 Clone this repository 
+#### In your terminal, type 'rake db:seed' to fill up the database with 3 user accounts and 3 restaurants with 6 items on each.
+#### In your terminal, run 'bundle install' to install all required gems.
 
 ## How to run the program
 
-#### In your terminal, run 'bundle install' to install all required gems.
 #### In your terminal, type 'shotgun' to start the server.
 #### In your browser, visit: http://127.0.0.1:9393/ to visit the homepage.
 
@@ -35,11 +36,24 @@ Clone this repository
 
 ## Usage
 
+In your terminal, type 'rake db:seed' to fill up the database with 3 user accounts and 3 restaurants with 6 items on each.
 In your terminal, type 'shotgun' to start the server.
 In your browser, visit: http://127.0.0.1:9393/ to visit the homepage.
-Signup as a User or as a restaurant.
-Firstly singup as a Restaurant and create some items, than signup as a User and create a new order.
-Log back in as the restaurant you just created and see the new order in the "Orders" section.
+### 
+Signup as a User using any of the accounts:
+#### email: "toni@example.com", password:"toni"
+#### email: "test@example.com", password:"test"
+#### email: "user@example.com", password:"user"
+### 
+or as a restaurant using any of the accounts:
+### 
+#### email: "beulah@example.com", password: "beulah"
+#### email: "mantanah@example.com", password: "mantanah"
+#### email: "yosushy@example.com", password: "yosushy"
+
+Firstly login of signup as a User and create a new order.
+Log in as the restaurant you just created the order and see the new order in the "Orders" section.
+I any restaurant account you have the option to add, edit or delete any item that belongs to that restaurant.
 
 ## Development
 
