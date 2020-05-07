@@ -16,8 +16,8 @@ A User Interface: login, signup, orders history, create new order, cancel order 
 ## Installation
 
 Clone this repository 
-#### In your terminal, type 'rake db:seed' to fill up the database with 3 user accounts and 3 restaurants with 6 items on each.
 #### In your terminal, run 'bundle install' to install all required gems.
+#### In your terminal, type 'rake db:seed' to fill up the database with 3 user accounts and 3 restaurants with 6 items on each.
 
 ## How to run the program
 
@@ -40,7 +40,7 @@ In your terminal, type 'rake db:seed' to fill up the database with 3 user accoun
 In your terminal, type 'shotgun' to start the server.
 In your browser, visit: http://127.0.0.1:9393/ to visit the homepage.
 ### 
-Signup as a User using any of the accounts:
+Login as a User using any of the accounts:
 #### email: "toni@example.com", password:"toni"
 #### email: "test@example.com", password:"test"
 #### email: "user@example.com", password:"user"
@@ -53,7 +53,7 @@ or as a restaurant using any of the accounts:
 
 Firstly login of signup as a User and create a new order.
 Log in as the restaurant you just created the order and see the new order in the "Orders" section.
-I any restaurant account you have the option to add, edit or delete any item that belongs to that restaurant.
+In any restaurant account you have the option to add, edit or delete any item that belongs to that restaurant.
 
 ## Development
 
@@ -67,7 +67,7 @@ Bug reports and pull requests are welcome on GitHub at https://github.com/antonz
 
 ## License
 
-The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
+The gem is available as open source under the terms of the [MIT License](https://github.com/antonzaharia/Food-Order/blob/master/LICENSE.txt).
 
 ## Code of Conduct
 
