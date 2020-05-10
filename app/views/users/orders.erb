@@ -1,18 +1,5 @@
-<% if logged_in? || current_user %>
-
 <div class="container">
 
-
-
-<div class="d-flex justify-content-end">
-<% @user = User.find_by_id(session[:user_id])%>
-<p><%= @user.name %> <a class="btn btn-outline-danger" href="/logout">Log Out</a>
-</div>
-
-<div class="d-flex justify-content-center">
-<a class="btn btn-light" href="/restaurants">Back to Restaurants</a><br>
-</div>
-<br><br><br>
 <% @orders.reverse.each do |order|  %>
 
 <div class="card">
@@ -22,7 +9,7 @@
   <div class="card-body">
     <h5 class="card-title">You ordered from: <%= order.restaurant.name %></h5>
 
-<% if Time.now < order.created_at + (1*60*60)%>
+<% if under_60_mins?(order)%>
 
 <p class="card-text" style="color: red;"> ( Preparing... ) </p>
 
@@ -40,6 +27,4 @@
 
 <br>
 <% end %>
-<% else %>
-<%= redirect to "/failure" %>
-<% end %></div>
+</div>

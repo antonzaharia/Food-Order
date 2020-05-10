@@ -18,10 +18,42 @@
   <body>
     <div class="wrapper">
 
-    <a href="/" type="button" class="btn btn-light">Home</a>
+<div class="container">
+
+
+    <a href="<%='/restaurants' if logged_in?%><%='/index' if restaurant_logged_in?%>" type="button" class="btn btn-light">Home</a>
+
+    <% if restaurant_logged_in?%>
+      <div class="d-flex justify-content-end">
+      <p><%= current_restaurant.name %> <a class="btn btn-outline-danger" href="/restaurant/logout">Logout</a></p>
+      </div>
+
+      <div class="d-flex justify-content-center">
+      <p><a class="btn btn-light" href="/restaurant/orders">Orders</a></p>
+      </div>
+      <br><br>
+
+      <div class="d-flex justify-content-center">
+      <a class="btn btn-primary" href="/items/new">+ Add Item</a>
+      </div>
+      <br><br>
+    <% elsif logged_in? %>
       
+      <div class="d-flex justify-content-end">
+      <p><%= current_user.name %> <a class="btn btn-outline-danger" href="/logout">Log Out</a></p>
+      </div>
+
+      <div class="d-flex justify-content-center">
+      <a class="btn btn-outline-info" href="/<%= current_user.id %> /orders">Orders History</a></p>
+      </div>
+      <br><br><br>
+    <% end %>
+
+
         <%= yield %>
 
+
+</div>
       <footer class="d-flex justify-content-start fixed-bottom">
         <small>&copy; 2020 <strong>FoodOrder</strong></small>
       </footer>

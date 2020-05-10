@@ -2,19 +2,26 @@ class RestaurantsController < ApplicationController
 
   
   get '/restaurants' do
-    @restaurants = Restaurant.all
-    erb :'restaurants/restaurants'
+    if logged_in?
+      @restaurants = Restaurant.all
+      erb :'/restaurants/restaurants'
+    else
+      redirect '/failure'
+    end
   end
 
   get '/restaurants/:id' do
-    @restaurant = Restaurant.find_by_id(params[:id])
-    @items = Item.all.select { |item| item.restaurant == @restaurant}
-    erb :'restaurants/show'
+    if logged_in?
+      @restaurant = Restaurant.find_by_id(params[:id])
+      @items = @restaurant.items
+      erb :'/orders/new'
+    else
+      redirect '/failure'
+    end
   end
 
   get '/restaurant/signup' do
     erb :'/restaurants/signup'
-    
  end
 
   post '/restaurant/signup' do
@@ -39,18 +46,20 @@ class RestaurantsController < ApplicationController
   end
 
   post '/restaurant/login' do
+    input_email_restaurant = Restaurant.find_by(email: params["restaurant"]["email"])
+
     if params["restaurant"]["email"].empty? || params["restaurant"]["password"].empty?
       @error = "Email and password cannot be blank."
       erb :'/restaurants/login'
-    elsif Restaurant.find_by(email: params["restaurant"]["email"]) == nil
+    elsif input_email_restaurant == nil
       @error = "Email not associated with any Restaurant."
       erb :'/restaurants/login'
     else
-      @restaurant = Restaurant.find_by(email: params["restaurant"]["email"])
+      @restaurant = input_email_restaurant
        if @restaurant && @restaurant.authenticate(params["restaurant"]["password"])
          session[:restaurant_id] = @restaurant.id
 
-         redirect to "/restaurant"
+         redirect to "/index"
        else
         @error = "Wrong Password"
         erb :'/restaurants/login'
@@ -58,22 +67,23 @@ class RestaurantsController < ApplicationController
     end
   end
 
-  get '/restaurant' do
-    @restaurant = Restaurant.find_by_id(session[:restaurant_id])
-    @items = Item.all.select { |item| item.restaurant == @restaurant }
-    erb :'/restaurants/restaurant'
+  get '/index' do
+    if restaurant_logged_in?
+      @items = current_restaurant.items
+      erb :'/restaurants/index'
+    else
+      redirect '/failure'
+    end
   end
 
   get '/restaurant/logout' do
     session.clear
-
     redirect '/'
   end
 
   get '/restaurant/orders' do 
-    @orders = Order.all.select {|order| order.restaurant_id == session[:restaurant_id]}
-
-    erb :'/restaurants/orders'
+      @orders = current_restaurant.orders
+      erb :'/restaurants/orders'
   end
 
 end

@@ -46,10 +46,14 @@ class UsersController < ApplicationController
       
   end
 
-  get '/orders' do
-    @user = current_user
-    @orders = Order.all.select {|order| order.user == @user}
-    erb :'/users/orders'
+  get '/:user_id/orders' do
+    if logged_in?
+      @user = current_user
+      @orders = @user.orders
+      erb :'/users/orders'
+    else
+      redirect '/failure'
+    end
   end
 
   get '/logout' do

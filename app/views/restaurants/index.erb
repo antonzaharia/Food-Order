@@ -1,44 +1,25 @@
 <div class="container"> 
 
-<% if restaurant_logged_in? || current_restaurant%>
+<h1><%= current_restaurant.name%></h1>
 
-
-<h1><%= @restaurant.name%></h1>
-
-<div class="d-flex justify-content-end">
- <a class="btn btn-outline-danger" href="/restaurant/logout">Logout</a>
-</div>
-
-<div class="d-flex justify-content-center">
-<p><a class="btn btn-light" href="/restaurant/orders">Orders</a></p>
-</div>
-<br><br>
-
-<div class="d-flex justify-content-center">
-<a class="btn btn-primary" href="/items/new">Add Item</a>
-</div>
-<br><br>
 <% @items.reverse.each do |item| %>
-
 
 <div class="card">
   <h5 class="card-header"><%= item.genre%></h5>
   <div class="card-body">
     <h5 class="card-title"><%= item.name%> - <span class="badge badge-secondary"><%= item.price%></span></h5>
-    <p class="card-text"><%= item.description%></p>
     <a href="/items/<%= item.id %>/edit" class="btn btn-primary">Edit this item</a>
+
 <div class="d-flex justify-content-end">
     <form method="POST" action="/items/<%= item.id %>/delete">
     <input id="hidden" type="hidden" name="_method" value="delete">
     <input class="btn btn-danger" type="submit" value="Delete this item">
     </form>
+    <a href="/items/<%= current_restaurant.id %>/<%= item.id %>" class="btn btn-primary">See item</a>
 </div>
+
   </div>
 </div>
-<% end %>
-
-<% else %>
-<%= redirect to "/failure" %>
 <% end %>
 
 </div>

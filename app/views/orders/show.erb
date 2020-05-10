@@ -1,14 +1,3 @@
-<div class="container"> 
-<% if logged_in? || current_user%>
-
-<div class="d-flex justify-content-center">
-<a class="btn btn-light" href="/restaurants">Back to Restaurants</a><br>
-</div>
-
-<div class="d-flex justify-content-end">
-<% @user = User.find_by_id(session[:user_id])%>
-<p><%= @user.name %> <a class="btn btn-outline-danger" href="/logout">Log Out</a>
-</div>
 
 <br>
 <div class="d-flex justify-content-center">
@@ -29,7 +18,4 @@
 <div class="d-flex justify-content-center fixed-bottom">
 <h2>Total: <span class="badge badge-secondary">$ <%=@order.total.to_f.round(2)%></span></h2>
 </div>
-<% else %>
-<%= redirect to "/failure" %>
-<% end %> 
 </div>

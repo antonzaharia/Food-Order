@@ -1,4 +1,3 @@
-<% if restaurant_logged_in? %>
 
 <div class="container"> 
 
@@ -12,12 +11,9 @@
 <input class="form-control" type="text" name="genre" value="<%= @item.genre %>"><br>
 <input class="form-control" type="text" name="price" value="<%= @item.price %>"><br>
 <input class="btn btn-primary" type="submit" value="Edit Item">
-<a class="btn btn-danger" href="/restaurant">Cancel</a>
+<a class="btn btn-danger" href="/index">Cancel</a>
 </form>
 
 </div>
 
-<% else %>
-<%= redirect to "/failure" %>
-<% end %>
 

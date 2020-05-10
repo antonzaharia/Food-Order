@@ -1,51 +1,39 @@
+
 <div class="container">
 
-<% if logged_in? || current_user %>
+
+<h1><%= @restaurant.name %></h1>
+
+
+<form method="POST" action="/orders">
+
+<input type="hidden" name="restaurant_id" value="<%= @restaurant.id %>">
+
+<% @items.each do |item| %>
+
 
 <div class="card">
-  <div class="card-header">
-    Confirm Your Order.
-  </div>
-<div class="card-body">
-<form method="POST" action="/orders/show">
-<% @total = 0.00 %>
+  <div class="card-body">
 
+    <div class="form-check">
 
-<% @order_items.each do |oi| %>
-<% item = Item.find_by_name(oi) %>
-<% @price = item.price.split("$")[1].to_f%>
+<input style="width: 20px; height: 20px;"class="form-check-input" type="checkbox" id="<%= item.name %>" name="<%= item.name %>">
 
+<input style="width: 40px;" type="number" value="0" name="<%= item.name %>" >
 
-<h5 class="card-title"><%= item.name %>
-<% params.select do |key, value| %>
-  <% if key == "#{item.name}_count" %>
-    <% @quantity = value.to_f%>
-    <%= "X #{value}" %> - <%= item.price %></h5>
-  <% end %>
-<% end %>
+<label for="<%= item.name %>"><%= item.name %></label><span class="badge badge-secondary" ><%= item.price %></span>
 
+<p class="d-flex justify-content-end"><%= item.genre %></p>
 
-<input type="hidden" name="<%= item.name %>" value="<%= item %>">
-<input type="hidden" name="restaurant_id" value="<%= item.restaurant.id %>">
+<%= item.description %>
 
-<input type="hidden" name="<%= item.id %>-<%= @quantity.to_s %>" value="item_id_quantity">
-
-<% @total += @price*@quantity%>
-
-<% end %>
-<br>
-<h4 class="card-text">Total: $<%= @total.round(2) %></h4>
-<input type="hidden" name="total" value="<%= @total %>">
-<label for="more_info">Any specific suggestion?</label><br>
-<textarea id="more_info" name="more_info"></textarea><br>
-<input class="btn btn-primary btn-lg" type="submit" value="Place Order">
-</form>
-
+    </div>
   </div>
 </div>
-
-<% else %>
-<%= redirect to "/failure" %>
 <% end %>
+
+<input class="btn btn-primary btn-lg btn-block" type="submit" value="Place Order">
+</form>
+<br><br><br><br>
 
 </div>
