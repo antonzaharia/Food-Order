@@ -63,5 +63,20 @@ class ItemsController < ApplicationController
     @item = Item.find_by_id(params[:item_id])
     erb :"items/show"
   end
+
+  private 
+
+  def can_edit_item?(item)
+    if restaurant_logged_in? && current_restaurant.items.include?(item)
+      return true
+    end
+  end
+
+  def item_from_params
+    @item = Item.find_by_id(params[:id])
+  end
+
+
+
   
 end

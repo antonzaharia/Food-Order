@@ -33,10 +33,26 @@ class OrdersController < ApplicationController
 
     if can_delete_order?(@order)
       @order.destroy
-      redirect "/orders"
+      redirect "/#{current_user.id}/orders"
     else
       redirect '/failure'
     end
+  end
+
+  private
+
+  def can_delete_order?(order)
+    if logged_in? && current_user.orders.include?(order)
+      return true
+    end
+  end
+
+  def order_from_params
+    @order = Order.find_by_id(params[:id])
+  end
+
+  def find_item_by_name(item_name)
+    Item.find_by(name: item_name)
   end
 
   

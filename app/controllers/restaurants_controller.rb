@@ -46,16 +46,15 @@ class RestaurantsController < ApplicationController
   end
 
   post '/restaurant/login' do
-    input_email_restaurant = Restaurant.find_by(email: params["restaurant"]["email"])
 
     if params["restaurant"]["email"].empty? || params["restaurant"]["password"].empty?
       @error = "Email and password cannot be blank."
       erb :'/restaurants/login'
-    elsif input_email_restaurant == nil
+    elsif restaurant_from_params == nil
       @error = "Email not associated with any Restaurant."
       erb :'/restaurants/login'
     else
-      @restaurant = input_email_restaurant
+      @restaurant = restaurant_from_params
        if @restaurant && @restaurant.authenticate(params["restaurant"]["password"])
          session[:restaurant_id] = @restaurant.id
 
@@ -85,5 +84,12 @@ class RestaurantsController < ApplicationController
       @orders = current_restaurant.orders
       erb :'/restaurants/orders'
   end
+
+private
+
+  def restaurant_from_params
+    Restaurant.find_by(email: params["restaurant"]["email"])
+  end
+
 
 end
