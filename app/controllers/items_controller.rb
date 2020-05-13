@@ -64,7 +64,7 @@ class ItemsController < ApplicationController
     erb :"items/show"
   end
 
-  private 
+private 
 
   def can_edit_item?(item)
     if restaurant_logged_in? && current_restaurant.items.include?(item)

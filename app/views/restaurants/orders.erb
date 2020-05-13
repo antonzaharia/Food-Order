@@ -13,6 +13,10 @@
                                     <% else %>
                                         <span class="badge badge-success"><%="Completed"%></span>
                                    <% end %></p>
+      <% order.order_items.each do |order_i|%>
+      <li> x <%= order_i.quantity %> - <%= order_i.item.name.downcase %></li>
+      <% end %>
+      <br>
       <footer class="blockquote-footer">Total: $ <%= order.total.to_f.round(2) %></footer>
     </blockquote>
   </div>

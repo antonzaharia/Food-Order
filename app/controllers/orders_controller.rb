@@ -39,7 +39,7 @@ class OrdersController < ApplicationController
     end
   end
 
-  private
+private
 
   def can_delete_order?(order)
     if logged_in? && current_user.orders.include?(order)
